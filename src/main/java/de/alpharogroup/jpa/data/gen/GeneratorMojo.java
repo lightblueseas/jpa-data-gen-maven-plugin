@@ -1,34 +1,31 @@
 package de.alpharogroup.jpa.data.gen;
- 
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 @Mojo(name = "jpa-generator")
 public class GeneratorMojo extends AbstractMojo
 {
-	
-    @Parameter(property = "parent", defaultValue = "my parent")
-    private String parent;
 
-    public void execute() throws MojoExecutionException 
-	{
-        getLog().info("Hello " + parent);
-    }
+	@Parameter(property = "parent", defaultValue = "my parent")
+	private String parent;
 
-    public String getParent() 
+	@Override
+	public void execute() throws MojoExecutionException
 	{
-        return parent;
-    }
+		getLog().info("Hello " + parent);
+	}
 
-    public void setParent(String parent) 
+	public String getParent()
 	{
-        this.parent = parent;
-    }
-	
+		return parent;
+	}
+
+	public void setParent(final String parent)
+	{
+		this.parent = parent;
+	}
+
 }

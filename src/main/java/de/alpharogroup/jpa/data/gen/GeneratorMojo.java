@@ -9,7 +9,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 public class GeneratorMojo extends AbstractMojo
 {
 
-	@Parameter(property = "parent", defaultValue = "my parent")
+	@Parameter(property = "parent", defaultValue = "default-parent")
 	private String parent;
 
 	@Override

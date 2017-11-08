@@ -5,30 +5,53 @@
 
 	<parent>
 		<groupId>de.alpharogroup</groupId>
-	<artifactId>mvn-maven-plugin-parent</artifactId>
+		<artifactId>mvn-maven-plugin-parent</artifactId>
 		<version>1.1.0</version>
 	</parent>
-	
-    <artifactId>jpa-data-gen-maven-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>maven-plugin</packaging>
-    <name>${artifactId}</name>
-    
-    <url>https://github.com/lightblueseas/jpa-data-gen-maven-plugin</url>
-    
-    <dependencies>
-    
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-plugin-api</artifactId>
-        </dependency>
-        
+
+	<artifactId>jpa-data-gen-maven-plugin</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>maven-plugin</packaging>
+	<name>${artifactId}</name>
+
+	<url>https://github.com/lightblueseas/jpa-data-gen-maven-plugin</url>
+
+	<properties>
+		<gen-db-sources.version>0.9.1-SNAPSHOT</gen-db-sources.version>
+	</properties>
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>gen-db-sources</artifactId>
+				<version>${gen-db-sources.version}</version>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<dependencies>
+
 		<dependency>
-            <groupId>org.apache.maven.plugin-tools</groupId>
-            <artifactId>maven-plugin-annotations</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        
-    </dependencies>
-    
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven.plugin-tools</groupId>
+			<artifactId>maven-plugin-annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>gen-db-sources</artifactId>
+		</dependency>
+
+	</dependencies>
+
 </project>

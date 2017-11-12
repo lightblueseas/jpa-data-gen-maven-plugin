@@ -18,6 +18,7 @@
 
 	<properties>
 		<gen-db-sources.version>0.9.1-SNAPSHOT</gen-db-sources.version>
+		<gen-db-core.version>${gen-db-sources.version}</gen-db-core.version>
 	</properties>
 
 	<dependencyManagement>
@@ -26,8 +27,8 @@
 
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
-				<artifactId>gen-db-sources</artifactId>
-				<version>${gen-db-sources.version}</version>
+				<artifactId>gen-db-core</artifactId>
+				<version>${gen-db-core.version}</version>
 			</dependency>
 
 		</dependencies>
@@ -49,7 +50,7 @@
 
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
-			<artifactId>gen-db-sources</artifactId>
+			<artifactId>gen-db-core</artifactId>
 		</dependency>
 
 	</dependencies>

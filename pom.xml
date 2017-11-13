@@ -17,7 +17,7 @@
 	<url>https://github.com/lightblueseas/jpa-data-gen-maven-plugin</url>
 
 	<properties>
-		<gen-db-sources.version>0.9.1-SNAPSHOT</gen-db-sources.version>
+		<gen-db-sources.version>0.9.1</gen-db-sources.version>
 		<gen-db-core.version>${gen-db-sources.version}</gen-db-core.version>
 	</properties>
 

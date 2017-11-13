@@ -32,6 +32,9 @@ public class GeneratorMojo extends AbstractMojo
 	@Parameter(property = "persistenceunitName", required = true)
 	String persistenceunitName;
 
+	@Parameter(property = "password", required = true)
+	String password;
+
 	@Parameter(property = "dataProjectParentVersion")
 	String dataProjectParentVersion;
 
@@ -44,6 +47,7 @@ public class GeneratorMojo extends AbstractMojo
 		getLog().info("Hello " + basePackageName);
 		getLog().info("Hello " + dataProjectParentVersion);
 		getLog().info("Hello " + persistenceunitName);
+		getLog().info("Hello " + password);
 
 //		try
 //		{

@@ -70,8 +70,7 @@ public class GeneratorMojo extends AbstractMojo
 
 	protected void addDependenciesToClasspath(final String artifactId)
 	{
-		for (final Artifact artifact :
-			project.getDependencyArtifacts())
+		for (final Artifact artifact : project.getDependencyArtifacts())
 		{
 			if (artifact.getArtifactId().equals(artifactId))
 			{
@@ -102,36 +101,7 @@ public class GeneratorMojo extends AbstractMojo
 		getLog().info("Parameter 'password' is:" + password);
 		getLog().info("Parameter 'absoluteProjectPath' is:" + absoluteProjectPath);
 
-		try
-		{
-			final Set<URL> urls = new HashSet<>();
-			final List<String> elements = new ArrayList<>();
-
-			elements.addAll(project.getTestClasspathElements());
-			elements.addAll(project.getRuntimeClasspathElements());
-			elements.addAll(project.getCompileClasspathElements());
-			elements.addAll(project.getSystemClasspathElements());
-			final URL[] runtimeUrls = new URL[elements.size()];
-			for (int i = 0; i < elements.size(); i++)
-			{
-				final String element = elements.get(i);
-				runtimeUrls[i] = new File(element).toURI().toURL();
-			}
-			final URLClassLoader newLoader = new URLClassLoader(runtimeUrls,
-				Thread.currentThread().getContextClassLoader());
-
-			Thread.currentThread().setContextClassLoader(newLoader);
-
-
-		}
-		catch (final DependencyResolutionRequiredException e)
-		{
-			throw new RuntimeException(e);
-		}
-		catch (final MalformedURLException e)
-		{
-			throw new RuntimeException(e);
-		}
+		Thread.currentThread().setContextClassLoader(getClassLoader(Thread.currentThread().getContextClassLoader()));
 
 
 		final PomGenerationModelBean pomGenerationModelBean = PomGenerationModelBean.builder()
@@ -150,6 +120,62 @@ public class GeneratorMojo extends AbstractMojo
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new MojoExecutionException("", e);
+		}
+	}
+
+
+	protected ClassLoader getClassLoader(final ClassLoader parentClassLoader) throws MojoExecutionException
+	{
+		try
+		{
+			final List<String> classpathElements = project.getCompileClasspathElements();
+			classpathElements.add(project.getBuild().getOutputDirectory());
+			classpathElements.add(project.getBuild().getTestOutputDirectory());
+			final URL urls[] = new URL[classpathElements.size()];
+
+			for (int i = 0; i < classpathElements.size(); ++i)
+			{
+				urls[i] = new File(classpathElements.get(i)).toURI().toURL();
+			}
+			if(parentClassLoader != null) {
+				return new URLClassLoader(urls, parentClassLoader);
+			}
+			return new URLClassLoader(urls, getClass().getClassLoader());
+		}
+		catch (final Exception e)// gotta catch em all
+		{
+			throw new MojoExecutionException("Couldn't create a classloader.", e);
+		}
+	}
+
+
+	public void tryLoadProjectClasses()
+	{
+		try
+		{
+			final Set<URL> urls = new HashSet<>();
+			final List<String> elements = new ArrayList<>();
+
+			elements.addAll(project.getTestClasspathElements());
+			elements.addAll(project.getRuntimeClasspathElements());
+			elements.addAll(project.getCompileClasspathElements());
+			elements.addAll(project.getSystemClasspathElements());
+			final ClassRealm realm = descriptor.getClassRealm();
+
+			for (final String element : elements)
+			{
+				final File elementFile = new File(element);
+				realm.addURL(elementFile.toURI().toURL());
+			}
+
+		}
+		catch (final DependencyResolutionRequiredException e)
+		{
+			throw new RuntimeException(e);
+		}
+		catch (final MalformedURLException e)
+		{
+			throw new RuntimeException(e);
 		}
 	}
 

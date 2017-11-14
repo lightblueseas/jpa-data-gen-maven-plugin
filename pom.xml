@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-maven-plugin-parent</artifactId>
-		<version>1.1.0</version>
+		<version>1.2.0</version>
 	</parent>
 
 	<artifactId>jpa-data-gen-maven-plugin</artifactId>
@@ -17,7 +17,7 @@
 	<url>https://github.com/lightblueseas/jpa-data-gen-maven-plugin</url>
 
 	<properties>
-		<gen-db-sources.version>0.9.2-SNAPSHOT</gen-db-sources.version>
+		<gen-db-sources.version>0.9.3-SNAPSHOT</gen-db-sources.version>
 		<gen-db-core.version>${gen-db-sources.version}</gen-db-core.version>
 	</properties>
 

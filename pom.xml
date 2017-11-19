@@ -10,14 +10,14 @@
 	</parent>
 
 	<artifactId>jpa-data-gen-maven-plugin</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>maven-plugin</packaging>
 	<name>${project.artifactId}</name>
 
 	<url>https://github.com/lightblueseas/jpa-data-gen-maven-plugin</url>
 
 	<properties>
-		<gen-db-sources.version>0.9.3-SNAPSHOT</gen-db-sources.version>
+		<gen-db-sources.version>0.9.3</gen-db-sources.version>
 		<gen-db-core.version>${gen-db-sources.version}</gen-db-core.version>
 	</properties>
 

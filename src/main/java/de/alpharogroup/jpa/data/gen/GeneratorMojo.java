@@ -103,7 +103,6 @@ public class GeneratorMojo extends AbstractMojo
 
 		Thread.currentThread().setContextClassLoader(getClassLoader(Thread.currentThread().getContextClassLoader()));
 
-
 		final PomGenerationModelBean pomGenerationModelBean = PomGenerationModelBean.builder()
 			.absoluteProjectPath(absoluteProjectPath).basePackageName(basePackageName)
 			.dataProjectName(dataProjectName).dataProjectParentVersion(dataProjectParentVersion)

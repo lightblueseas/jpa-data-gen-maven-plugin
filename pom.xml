@@ -17,20 +17,36 @@
 	<url>https://github.com/lightblueseas/jpa-data-gen-maven-plugin</url>
 
 	<properties>
-		<gen-db-sources.version>0.9.3</gen-db-sources.version>
-		<gen-db-core.version>${gen-db-sources.version}</gen-db-core.version>
+		<!-- JCOMMONS-LANG version -->
+		<jcommons-lang.version>4.26.0</jcommons-lang.version>
+		<!-- VELOCITY-EXTENSIONS version -->
+		<velocity-extensions.version>1.1.0</velocity-extensions.version>
+		<!-- XML-EXTENSIONS version -->
+		<xml-extensions.version>4.17.0</xml-extensions.version>
 	</properties>
 
 	<dependencyManagement>
 
 		<dependencies>
+			<!-- VELOCITY-EXTENSIONS DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>velocity-extensions</artifactId>
+				<version>${velocity-extensions.version}</version>
+			</dependency>
+			<!-- EXTENSIONS LIB DEPENDENCIES -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jcommons-lang</artifactId>
+				<version>${jcommons-lang.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
-				<artifactId>gen-db-core</artifactId>
-				<version>${gen-db-core.version}</version>
+				<artifactId>xml-extensions</artifactId>
+				<version>${xml-extensions.version}</version>
 			</dependency>
-
+			
 		</dependencies>
 
 	</dependencyManagement>
@@ -52,11 +68,21 @@
 			<artifactId>maven-plugin-annotations</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- VELOCITY-EXTENSIONS DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>velocity-extensions</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
-			<artifactId>gen-db-core</artifactId>
+			<artifactId>jcommons-lang</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>xml-extensions</artifactId>
+		</dependency>		
 
 	</dependencies>
 

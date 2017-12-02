@@ -20,9 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Entity;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.reflections.Reflections;
 
 import de.alpharogroup.file.FileExtension;
 import de.alpharogroup.file.FileSuffix;
@@ -648,6 +651,14 @@ public class GeneratorExtensions
 		}
 		final Set<String> qualifiedModelClassNames = PackageExtensions
 			.scanClassNames(generationData.getModelPackageName());
+		if(qualifiedModelClassNames.isEmpty()) {
+			final Reflections reflections = new Reflections(generationData.getModelPackageName());
+			final Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Entity.class);
+//
+//			Set<Class<? extends SomeType>> subTypes = reflections.getSubTypesOf(SomeType.class);
+//
+//			Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(SomeAnnotation.class);
+		}
 		generationData.setQualifiedModelClassNames(qualifiedModelClassNames);
 	}
 

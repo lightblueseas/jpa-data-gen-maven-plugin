@@ -18,11 +18,13 @@
 
 	<properties>
 		<!-- JCOMMONS-LANG version -->
-		<jcommons-lang.version>4.27.0-SNAPSHOT</jcommons-lang.version>
+		<jcommons-lang.version>4.27.0</jcommons-lang.version>
 		<!-- VELOCITY-EXTENSIONS version -->
 		<velocity-extensions.version>1.2.0</velocity-extensions.version>
 		<!-- XML-EXTENSIONS version -->
 		<xml-extensions.version>4.17.0</xml-extensions.version>
+		<!-- HIBERNATE versions -->
+		<hibernate.version>5.2.12.Final</hibernate.version>
 	</properties>
 
 	<dependencyManagement>
@@ -46,7 +48,19 @@
 				<artifactId>xml-extensions</artifactId>
 				<version>${xml-extensions.version}</version>
 			</dependency>
-			
+
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>0.9.11</version>
+			</dependency>
+			<!-- HIBERNATE DEPENDENCIES -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+
 		</dependencies>
 
 	</dependencyManagement>
@@ -80,9 +94,20 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>xml-extensions</artifactId>
-		</dependency>		
+		</dependency>
+		<!-- HIBERNATE DEPENDENCIES -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
 
 	</dependencies>
 
